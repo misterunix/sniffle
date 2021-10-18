@@ -3,6 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // Routines and data struct for getting various system and cpu information.
+// go routine safe as long as the mutex is locked and unlocked
 package systemcpu
 
 import (
