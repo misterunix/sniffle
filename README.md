@@ -23,6 +23,11 @@ I have never made a public module before and wanted to give it a shot and see wh
   - gets os and pid
   - gets Go version and number of go routines. 
   - This will get more as I need them.
+- String 
+  - Left justify with padding.
+  - Right justify with padding.
+  - Center with padded, optional padding on the right.
+  - Split lines at width and/or word boundry.
 
 ## Why in the world did you do this. 
 Well, as I said, it's stuff I use over and over again. We all know there are 100 different ways to do something in go and this is just my way. :beer:
