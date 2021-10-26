@@ -10,7 +10,24 @@ import (
 	"errors"
 	"io/ioutil"
 	"os"
+	"strings"
 )
+
+// LoadJSonFromString : Load a stuct or slice of structs from string s
+func LoadJSonFromString(s string, js interface{}) error {
+	if len(s) <= 0 {
+		return errors.New("string is empty")
+	}
+
+	r := strings.NewReader(s)
+	decoder := json.NewDecoder(r)
+	err := decoder.Decode(&js)
+	if err != nil {
+		return (err)
+	}
+
+	return nil
+}
 
 // LoadJSon : Loads a slice of a struct data from JSon file.
 func LoadJSon(filename string, js interface{}) error {

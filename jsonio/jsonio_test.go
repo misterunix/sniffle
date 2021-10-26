@@ -11,7 +11,14 @@ type TmpStruct struct {
 	C bool
 }
 
+type Example struct {
+	Text string
+	MD5 string
+}
+
 var TheStruct []TmpStruct
+var Ejson := Example
+
 
 func TestBoth(t *testing.T) {
 
@@ -50,4 +57,10 @@ func TestBoth(t *testing.T) {
 	if TheStruct[2].A != 30 || TheStruct[2].B != "Three" || TheStruct[2].C != true {
 		t.Errorf("LoadJSon want %d %s %t got %d %s %t", 30, "Three", true, TheStruct[2].A, TheStruct[2].B, TheStruct[2].C)
 	}
+
+
+	es := "{ \"original\": \"example_text\", \"md5\": \"fa4c6baa0812e5b5c80ed8885e55a8a6\" }"
+	
+
+
 }
