@@ -59,9 +59,24 @@ func TestBoth(t *testing.T) {
 	}
 
 	es := "{ \"text\": \"example_text\", \"md5\": \"fa4c6baa0812e5b5c80ed8885e55a8a6\" }"
-	LoadJSonFromString(es, &Ejson)
+	err = LoadJSonFromString(es, &Ejson)
+	if err != nil {
+		t.Errorf("LoadJSonFromString returned an error: %s", err)
+	}
 	if strings.Compare(Ejson.Text, "example_text") != 0 || strings.Compare(Ejson.MD5, "fa4c6baa0812e5b5c80ed8885e55a8a6") != 0 {
 		t.Errorf("LoadJSonFromString wanted text:%s md5:%s but got text:%s md5:%s", "example_text", "fa4c6baa0812e5b5c80ed8885e55a8a6", Ejson.Text, Ejson.MD5)
 	}
 
+	// Wow this test was hard!!!!
+	es = `{
+ "Text": "example_text",
+ "MD5": "fa4c6baa0812e5b5c80ed8885e55a8a6"
+}`
+	rs, err := SaveJSonToString(Ejson)
+	if err != nil {
+		t.Errorf("SaveJSonToString returned an error: %s", err)
+	}
+	if strings.Compare(rs, es) != 0 {
+		t.Errorf("SaveJSonToString: wanted\n%s got \n%s", es, rs)
+	}
 }

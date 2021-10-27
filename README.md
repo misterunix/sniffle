@@ -15,8 +15,10 @@ I have never made a public module before and wanted to give it a shot and see wh
   - file hash
   - string hash
 - JSON functions - this is the big one for me. I use JSON a lot!
-  - write a slice of a struct to a file
-  - read a file into a slice of a struct
+  - write a slice of a struct or a struct to a file
+  - write a slice of a struct or a struct to a string
+  - read a file into a slice of a struct or a struct
+  - read a string into a slive of a struct or a struct
 - CPU and system functions.
   - uses on go only packages
   - gets CPU cores and type

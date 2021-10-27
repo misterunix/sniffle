@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-// LoadJSonFromString : Load a stuct or slice of structs from string s
+// LoadJSonFromString : Load a stuct or a slice of structs from string s
 func LoadJSonFromString(s string, js interface{}) error {
 	if len(s) <= 0 {
 		return errors.New("string is empty")
@@ -29,7 +29,7 @@ func LoadJSonFromString(s string, js interface{}) error {
 	return nil
 }
 
-// LoadJSon : Loads a slice of a struct data from JSon file.
+// LoadJSon : Loads a struct or a slice of a struct data from JSon file.
 func LoadJSon(filename string, js interface{}) error {
 
 	if !fileExists(filename) {
@@ -50,7 +50,16 @@ func LoadJSon(filename string, js interface{}) error {
 	return nil
 }
 
-// SaveJSon : Saves a struct slice to a file. Creating it if needed.
+// SaveJSonToString : Saves struct or a slice to a string
+func SaveJSonToString(js interface{}) (string, error) {
+	rbytes, err := json.MarshalIndent(js, "", " ")
+	if err != nil {
+		return "", err
+	}
+	return string(rbytes), nil
+}
+
+// SaveJSon : Saves a struct or a struct slice to a file. Creating it if needed.
 func SaveJSon(filename string, js interface{}) error {
 	file, _ := json.MarshalIndent(js, "", " ")
 	err := ioutil.WriteFile(filename, file, 0644)
