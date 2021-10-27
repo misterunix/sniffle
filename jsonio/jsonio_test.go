@@ -2,6 +2,7 @@ package jsonio
 
 import (
 	"os"
+	"strings"
 	"testing"
 )
 
@@ -13,12 +14,11 @@ type TmpStruct struct {
 
 type Example struct {
 	Text string
-	MD5 string
+	MD5  string
 }
 
 var TheStruct []TmpStruct
-var Ejson := Example
-
+var Ejson Example
 
 func TestBoth(t *testing.T) {
 
@@ -58,9 +58,10 @@ func TestBoth(t *testing.T) {
 		t.Errorf("LoadJSon want %d %s %t got %d %s %t", 30, "Three", true, TheStruct[2].A, TheStruct[2].B, TheStruct[2].C)
 	}
 
-
-	es := "{ \"original\": \"example_text\", \"md5\": \"fa4c6baa0812e5b5c80ed8885e55a8a6\" }"
-	
-
+	es := "{ \"text\": \"example_text\", \"md5\": \"fa4c6baa0812e5b5c80ed8885e55a8a6\" }"
+	LoadJSonFromString(es, &Ejson)
+	if strings.Compare(Ejson.Text, "example_text") != 0 || strings.Compare(Ejson.MD5, "fa4c6baa0812e5b5c80ed8885e55a8a6") != 0 {
+		t.Errorf("LoadJSonFromString wanted text:%s md5:%s but got text:%s md5:%s", "example_text", "fa4c6baa0812e5b5c80ed8885e55a8a6", Ejson.Text, Ejson.MD5)
+	}
 
 }
